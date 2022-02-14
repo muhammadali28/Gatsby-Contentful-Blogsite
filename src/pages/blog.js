@@ -9,7 +9,7 @@ const Blog = () => {
   const data = useStaticQuery(
     graphql`
       query {
-        allContentfulBlogPost(sort: {fields: publisheddate, order: ASC}) {
+        allContentfulBlogPost(sort: {fields: publisheddate, order: DESC}) {
           edges {
             node {
               excerpt {
@@ -27,10 +27,11 @@ const Blog = () => {
             }
           }
         }
-    }    
+      }
+    
     `
   )
-  const image = getImage(data.allContentfulBlogPost.edge.node.featuredImage)
+  /* const image = getImage(data.allContentfulBlogPost.edge.node.featuredImage)*/
   return (
     <Layout>
       <SEO title="Blog" />
@@ -48,7 +49,7 @@ const Blog = () => {
                 <span>Posted on {edge.node.publisheddate}</span>
               </div>
               <p/>
-               <GatsbyImage image={image} alt={edge.node.title} /> 
+              {/* <GatsbyImage image={image} alt={edge.node.title} /> */}
 
               <p className="excerpt">
                 {edge.node.excerpt.childMarkdownRemark.excerpt}
