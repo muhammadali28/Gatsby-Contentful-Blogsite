@@ -31,13 +31,10 @@ const Blog = () => {
     
     `
   )
-  /* const image = getImage(data.allContentfulBlogPost.edge.node.featuredImage)*/
+  
   return (
     <Layout>
       <SEO title="Blog" />
-      <p>
-        <Link to="/">Go back to the homepage</Link>
-      </p>
       <ul className="posts">
         {data.allContentfulBlogPost.edges.map(edge => {
           return (
@@ -49,7 +46,8 @@ const Blog = () => {
                 <span>Posted on {edge.node.publisheddate}</span>
               </div>
               <p/>
-              {/* <GatsbyImage image={image} alt={edge.node.title} /> */}
+              {console.log(edge.node.featuredImage)}
+              <GatsbyImage classNmae="featured" image={getImage(edge.node.featuredImage)} alt={edge.node.title} />
 
               <p className="excerpt">
                 {edge.node.excerpt.childMarkdownRemark.excerpt}

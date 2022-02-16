@@ -14,24 +14,27 @@ export const query = graphql`
       featuredImage {
         gatsbyImageData(width: 200, placeholder: BLURRED)
       }
-      
+     body{
+       raw
+     }
     }
   }
 `
+
 
 const BlogPost = props => {
 
   const image = getImage(props.data.contentfulBlogPost.featuredImage)
   
-//   const options = {
-//     renderNode: {
-//       "embedded-asset-block": node => {
-//         const alt = node.data.target.fields.title["en-US"]
-//         const url = node.data.target.fields.file["en-US"].url
-//         return <img alt={alt} src={url} />
-//       },
-//     },
-//   }
+  // const options = {
+  //   renderNode: {
+  //     "embedded-asset-block": node => {
+  //       const alt = node.data.target.fields.title["en-US"]
+  //       const url = node.data.target.fields.file["en-US"].url
+  //       return <img alt={alt} src={url} />
+  //     },
+  //   },
+  // }
 
   return (
     <Layout>
@@ -46,10 +49,10 @@ const BlogPost = props => {
         {props.data.contentfulBlogPost.featuredImage && (
           <GatsbyImage className="featured" image={image} alt={props.data.contentfulBlogPost.title} />
         )}
-        {/* {documentToReactComponents(props.data.contentfulBlogPost.body.json, options)} */}
+        {/* {documentToReactComponents(props.data.contentfulBlogPost.body.raw, options)} */}
       </div>
     </Layout>
   )
 }
 
-export default BlogPost
+export default BlogPost;
